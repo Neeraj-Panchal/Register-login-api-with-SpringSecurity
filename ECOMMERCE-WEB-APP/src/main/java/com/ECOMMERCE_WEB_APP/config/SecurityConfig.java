@@ -36,16 +36,18 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((request) ->
                         ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl) request
-                                .requestMatchers("register","login")
+                                .requestMatchers("/register","/login")
                                 .permitAll()
                                 .anyRequest()).authenticated())
                 .httpBasic(Customizer.withDefaults())
+
                 .sessionManagement((session) ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtFilter , UsernamePasswordAuthenticationFilter.class)
