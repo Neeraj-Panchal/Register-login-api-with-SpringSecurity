@@ -8,109 +8,84 @@ Follow the steps below to clone, set up, and run this project on your local mach
 
 ## 1. Clone the Repository
 
-To get started, clone the repository to your local machine by running the following command:
+To get started, clone the repository to your local machine:
 
 ```bash
 git clone https://github.com/Neeraj-Panchal/Register-login-api-with-SpringSecurity.git
 ```
 
-This will create a copy of the repository on your local system.
-
----
-
 ## 2. Navigate to the Project Directory
-
-Once the repository is cloned, change to the project directory:
+Change to the project directory:
 
 ```bash
 cd Register-login-api-with-SpringSecurity
 ```
 
----
-
 ## 3. Open the Project in Your IDE
+Open the project in your preferred IDE:
 
-Open the project in your preferred Integrated Development Environment (IDE):
+IntelliJ IDEA (recommended for Spring Boot)
 
-- IntelliJ IDEA (recommended for Spring Boot projects)
-- Eclipse
-- VS Code
+Eclipse
 
-For IntelliJ IDEA:
+VS Code
 
-Open the project directly from the `Register-login-api-with-SpringSecurity` directory.
+In IntelliJ IDEA, open the folder Register-login-api-with-SpringSecurity.
 
----
+## 4. Configure the Database
+This project requires a MySQL database. Make sure MySQL is running on your system.
 
-## 4. Build the Project
-
-The project uses Maven for dependency management. To build the project and download all required dependencies, run the following command:
-
-```bash
-mvn clean install
-```
-
-This will ensure that all necessary libraries are available and the project is properly set up.
-
----
-
-## 5. Run the Application
-
-After building the project, you can run the application with the following command:
+## Option A: Use .env file
+Create a .env file in the root directory and add the following:
 
 ```bash
-mvn spring-boot:run
+DB_URL=jdbc:mysql://localhost:3306/your_database
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
 ```
+Note: Make sure your code is configured to read these environment variables.
 
-Your application will now be running locally at:
+## Option B: Edit application.properties
+Update the src/main/resources/application.properties file:
 
-[http://localhost:8080](http://localhost:8080)
-
----
-
-## 6. Configure the Database (Optional)
-
-If your project requires a database connection, ensure that your MySQL server (or the database you are using) is up and running.
-
-Update the connection details in the `application.properties` or `application.yml` file:
-
-```properties
+```bash
 spring.datasource.url=jdbc:mysql://localhost:3306/your_database
 spring.datasource.username=your_username
 spring.datasource.password=your_password
 ```
+## 5. Build the Project
+Use Maven to install dependencies and build the project:
+```bash
+mvn clean install
+```
+## 6. Run the Application
+To start the Spring Boot application:
 
----
+```bash
+mvn spring-boot:run
+```
+Your API will be available at:
+
+http://localhost:8080
 
 ## 7. Run Tests (Optional)
-
-To run the unit tests in the project, use the following Maven command:
+Run unit tests using Maven:
 
 ```bash
 mvn test
-```
-
-This will run all tests to ensure the application is functioning correctly.
-
----
+``` 
 
 ## Troubleshooting
+### 1. Error: git: command not found
+This error occurs if Git is not installed. Download it from:
 
-### 1. Error: `git: command not found`
+https://git-scm.com/downloads
 
-This error occurs if Git is not installed on your machine. To resolve it, download and install Git from:
-
-[https://git-scm.com/downloads](https://git-scm.com/downloads)
-
-### 2. Error: Database Connection Failure
-
+### 2. Database Connection Failure
 Ensure that:
 
-- Your MySQL server (or chosen database) is running.
-- The database connection details in `application.properties` are correct.
+MySQL server is running
 
----
+Correct DB name, username, and password are configured
 
-## Additional Information
-
-For any issues or questions, feel free to open an issue on the repository.
+The database exists in your local MySQL instance
