@@ -1,14 +1,12 @@
-# Use a lightweight Java image
-FROM openjdk:17-jdk-slim
-
-# Set working directory
+# Stage 1: Build the app
+FROM maven:3.8.4-openjdk-17 AS builder
 WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Copy the built jar file into the container
-COPY target/*.jar app.jar
-
-# Expose port (default Spring Boot port)
+# Stage 2: Use a lightweight JDK to run the app
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=builder /app/target/*.jar app.jar
 EXPOSE 8080
-
-# Run the jar file
 ENTRYPOINT ["java", "-jar", "app.jar"]
